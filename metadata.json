@@ -2,9 +2,11 @@
   "name": "openvpn-openvpnas",
   "version": "0.1.0",
   "author": "OpenVPN project",
-  "summary": "",
+  "summary": "Manage OpenVPN Access Server",
   "license": "BSD-2-Clause",
-  "source": "",
+  "source": "https://github.com/OpenVPN/puppet-openvpnas",
+  "project_page": "https://github.com/OpenVPN/puppet-openvpnas",
+  "issues_url": "https://github.com/OpenVPN/puppet-openvpnas/issues",
   "dependencies": [
 
   ],
@@ -12,36 +14,44 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
+        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
+        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "8"
+        "6",
+        "7"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
+        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9"
+        "8",
+        "9",
+        "10"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
+        "14.04",
+        "16.04",
         "18.04"
       ]
     }
