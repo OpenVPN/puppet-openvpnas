@@ -26,9 +26,9 @@ To convert current Access Server configuration into Puppet code use
 
 To define Access Server user properties use the openvpnas_userprop type:
 
-  openvpnas_userprop { 'openvpn-prop_superuser':
-    value => 'true',
-  }
+    openvpnas_userprop { 'openvpn-prop_superuser':
+      value => 'true',
+    }
 
 The resource parameter "name" (defaults to resource title) must consist of three
 parts:
