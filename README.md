@@ -9,7 +9,7 @@ types and providers, but that will change in the future.
 To define server configuration parameters use the openvpnas_config type:
 
     openvpnas_config { 'vpn.tls_refresh.interval':
-      conf_value  => '100',
+      value  => '100',
     }
 
 The provider uses "sacli" under the hood, so please use

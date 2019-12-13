@@ -9,7 +9,7 @@ Puppet::Type.type(:openvpnas_config).provide(:sacli) do
 
   def create
     sacli('--key',   resource[:name],
-          '--value', resource[:conf_value],
+          '--value', resource[:value],
           'ConfigPut')
   end
 
@@ -25,8 +25,8 @@ Puppet::Type.type(:openvpnas_config).provide(:sacli) do
     config.each_pair do |key, value|
       res << new(name: key,
                  ensure: :present,
-                 conf_key: key,
-                 conf_value: value)
+                 key: key,
+                 value: value)
     end
     res
   end
@@ -44,11 +44,11 @@ Puppet::Type.type(:openvpnas_config).provide(:sacli) do
     @property_hash[:ensure] == :present
   end
 
-  def conf_value
-    @property_hash[:conf_value]
+  def value
+    @property_hash[:value]
   end
 
-  def conf_value=(value)
-    sacli('--key', @property_hash[:conf_key], '--value', value, 'ConfigPut')
+  def value=(value)
+    sacli('--key', @property_hash[:key], '--value', value, 'ConfigPut')
   end
 end
