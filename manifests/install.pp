@@ -25,5 +25,16 @@ class openvpnas::install {
         require => Apt::Source['as-repository'],
       }
     }
+    'RedHat': {
+      package { 'openvpn-as-yum':
+        ensure => 'present',
+        source => "https://as-repository.openvpn.net/as-repo-centos${facts['os']['release']['major']}.rpm",
+      }
+
+      package { 'openvpn-as':
+        ensure  => 'present',
+        require => Package['openvpn-as-yum'],
+      }
+    }
   }
 }
