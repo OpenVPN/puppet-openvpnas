@@ -2,5 +2,8 @@
 # See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
+  symlinks:
+    openvpnas: "#{source_dir}"
   forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+    apt: "puppetlabs/apt"
+    stdlib: "puppetlabs/stdlib"

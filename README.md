@@ -6,6 +6,13 @@ types and providers, but that will change in the future.
 
 # Usage
 
+## Installing OpenVPN Access Server
+
+To install OpenVPN Access Server from the official apt/yum repositories is as
+simple as:
+
+  include ::openvpnas
+
 ## openvpnas_config
 
 To define server configuration parameters use the openvpnas_config type:
