@@ -46,6 +46,12 @@ parts:
 
 If the syntax of the title is wrong catalog compilation will fail.
 
+In the user/group name part only word characters, "." and "\_" are allowed. If
+your usernames contain other characters please let us know or, better yet,
+modify the "name" parameter's validation regexp in
+[lib/puppet/type/openvpnas_userprop.rb](lib/puppet/type/openvpnas_userprop.rb)
+and issue a pull request.
+
 You can get a list of current user properties with
 
     $ /usr/local/openvpn_as/scripts/sacli UserPropGet
