@@ -24,7 +24,7 @@ module Puppet
       format_str = 'Should be in format user-key or group-key!'
       validate do |name|
         raise('Name must be a string') unless name.is_a?(String)
-        raise("Resource name \'#{name}\' is invalid. #{format_str}") unless name =~ %r{^(\w|_)+-(\w|_)+$}
+        raise("Resource name \'#{name}\' is invalid. #{format_str}") unless name =~ %r{^(\w|_|\.)+-(\w|_)+$}
       end
     end
 
