@@ -4,12 +4,12 @@
 #
 class openvpnas::install {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian': {
       ::apt::source { 'as-repository':
         comment  => 'Official OpenVPN Access Server repository',
         location => 'http://as-repository.openvpn.net/as/debian',
-        release  => $::lsbdistcodename,
+        release  => $facts['os']['distro']['codename'],
         repos    => 'main',
         key      => {
           'id'     => '8B1BC7FECB7259E1430A3AA026EB39123AAAAA96',
@@ -21,18 +21,18 @@ class openvpnas::install {
       }
 
       package { 'openvpn-as':
-        ensure  => 'present',
+        ensure  => $openvpnas::package_ensure,
         require => Apt::Source['as-repository'],
       }
     }
     'RedHat': {
       package { 'openvpn-as-yum':
-        ensure => 'present',
+        ensure => $openvpnas::package_ensure,
         source => "https://as-repository.openvpn.net/as-repo-centos${facts['os']['release']['major']}.rpm",
       }
 
       package { 'openvpn-as':
-        ensure  => 'present',
+        ensure  => $openvpnas::package_ensure,
         require => Package['openvpn-as-yum'],
       }
     }
