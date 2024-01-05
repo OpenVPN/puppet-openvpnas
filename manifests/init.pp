@@ -10,10 +10,15 @@ class openvpnas (
   Enum['running', 'stopped'] $service_ensure = 'running',
   Boolean $service_enable                    = true,
   String $service_name                       = 'openvpnas',
+  Hash $config = {},
+  Hash $userprop = {},
 ) {
   contain 'openvpnas::install'
   contain 'openvpnas::service'
 
   Class['openvpnas::install']
   -> Class['openvpnas::service']
+
+  create_resources(openvpnas::config, $config)
+  create_resources(openvpnas::userprop, $userprop)
 }

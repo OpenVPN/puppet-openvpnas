@@ -60,6 +60,32 @@ To convert current user properties into Puppet code use
 
     $ puppet resource openvpnas_userprop
 
+## Defining settings in Hiera for automatic lookup of class parameters
+
+It is also possible to define all settings in Hiera and just `include openvpnas`
+module in your manifest, which will then automatically lookup the class
+parameters from Hiera data. Here is an example of Hiera data:
+
+    openvpnas::package_ensure: installed
+    openvpnas::service_ensure: running
+    openvpnas::service_enable: true
+    openvpnas::service_name: openvpnas
+    openvpnas::config:
+      vpn.tls_refresh.interval:
+        ensure: present
+        value: '100'
+    openvpnas::userprop:
+      openvpn-prop_superuser:
+        ensure: present
+        value: 'true'
+
+To convert current Access Server configuration and user properties into Hiera values use the following commands and adjust the top level keys
+
+    $ puppet resource openvpnas_config --to_yaml
+    $ puppet resource openvpnas_userprop --to_yaml
+
+Note: It was observed that the value of the openvpnas_config resource `subscription.saved_state` changes often and might not be a good idea to set that to a fixed value with Puppet. It is recommended to use eYAML to encrypt the several secrets that are dumped in plain text.
+
 # Warnings
 
 Please note that "sacli" does not do any validation on the data it gets: make
