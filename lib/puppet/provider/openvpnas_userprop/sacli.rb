@@ -8,11 +8,11 @@ Puppet::Type.type(:openvpnas_userprop).provide(:sacli) do
   commands sacli: '/usr/local/openvpn_as/scripts/sacli'
 
   def user
-    resource[:name].split('-').shift
+    resource[:name].split('-')[0..-2].join("-")
   end
 
   def key
-    resource[:name].split('-').drop(1)
+    resource[:name].split('-')[-1]
   end
 
   def create
