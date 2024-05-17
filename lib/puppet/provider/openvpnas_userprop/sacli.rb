@@ -39,7 +39,7 @@ Puppet::Type.type(:openvpnas_userprop).provide(:sacli) do
       entry[1].each_pair do |key, value|
         res << new(name: "#{entry[0]}-#{key}",
                    ensure: :present,
-                   value: value)
+                   value: value) unless key == 'type'
       end
     end
     res
