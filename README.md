@@ -60,6 +60,23 @@ To convert current user properties into Puppet code use
 
     $ puppet resource openvpnas_userprop
 
+## openvpnas_user
+
+This resource allows to perform user management in Access Serve:
+
+    openvpnas_user { 'test':
+      ensure => present
+    }
+
+Allowed state of user: "present" and "absent"
+
+To convert current Access Server user configuration into Puppet code use
+
+    $ puppet resource openvpnas_user
+
+You may exclude "provider => 'sacli'," when using "openvpnas_user" resource in Puppet manifest.
+To manage userprops for users created via resource "openvpnas_user" use resource "openvpnas_userprop"
+
 ## Defining settings in Hiera for automatic lookup of class parameters
 
 It is also possible to define all settings in Hiera and just `include openvpnas`
