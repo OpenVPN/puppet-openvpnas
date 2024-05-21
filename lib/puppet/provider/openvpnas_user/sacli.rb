@@ -2,30 +2,25 @@
 
 require 'json'
 
-Puppet::Type.type(:openvpnas_userprop).provide(:sacli) do
+Puppet::Type.type(:openvpnas_user).provide(:sacli) do
   defaultfor kernel: 'Linux'
 
   commands sacli: '/usr/local/openvpn_as/scripts/sacli'
 
   def user
-    resource[:name].split('-')[0..-2].join("-")
-  end
-
-  def key
-    resource[:name].split('-')[-1]
+    resource[:name]
   end
 
   def create
     sacli('--user',  user,
-          '--key',   key,
-          '--value', resource[:value],
+          '--key',   'type',
+          '--value', 'user_connect',
           'UserPropPut')
   end
 
   def destroy
     sacli('--user', user,
-          '--key',  key,
-          'UserPropDel')
+          'UserPropDelAll')
   end
 
   def self.instances
@@ -36,11 +31,7 @@ Puppet::Type.type(:openvpnas_userprop).provide(:sacli) do
     Puppet.debug(config)
     config.each do |entry|
       Puppet.debug("Found userprop entry: #{entry}")
-      entry[1].each_pair do |key, value|
-        res << new(name: "#{entry[0]}-#{key}",
-                   ensure: :present,
-                   value: value) unless key == 'type'
-      end
+        res << new(name: "#{entry[0]}", ensure: :present) unless entry[0] == '__DEFAULT__'
     end
     res
   end
@@ -58,11 +49,4 @@ Puppet::Type.type(:openvpnas_userprop).provide(:sacli) do
     @property_hash[:ensure] == :present
   end
 
-  def value
-    @property_hash[:value]
-  end
-
-  def value=(value)
-    sacli('--user', user, '--key', key, '--value', value, 'UserPropPut')
-  end
 end

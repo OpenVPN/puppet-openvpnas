@@ -1,10 +1,9 @@
 require 'spec_helper'
 
-describe Puppet::Type.type(:openvpnas_userprop) do
+describe Puppet::Type.type(:openvpnas_user) do
   let(:default_config) do
     {
-      name: 'foo-bar',
-      value: 'foobar',
+      name: 'test-user',
     }
   end
 
@@ -23,7 +22,7 @@ describe Puppet::Type.type(:openvpnas_userprop) do
     }.not_to raise_error
   end
 
-  bad_names = ['-', '--', 'foo', '-foo', 'foo-', 'foo-bar-foo', 'foo-type']
+  bad_names = ['-', '--', 'foo', '-foo', 'foo-', 'foo-bar-foo']
   bad_names.each do |name|
     context "should fail with bad name #{name}" do
       let(:config) do
