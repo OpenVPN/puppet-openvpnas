@@ -48,5 +48,4 @@ Puppet::Type.type(:openvpnas_user).provide(:sacli) do
   def exists?
     @property_hash[:ensure] == :present
   end
-
 end

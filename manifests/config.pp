@@ -1,9 +1,9 @@
 define openvpnas::config (
-  String $ensure = present,
   String $value,
+  String $ensure = present,
 ) {
   openvpnas_config { $name:
     ensure => $ensure,
-    value => $value,
+    value  => $value,
   }
 }
