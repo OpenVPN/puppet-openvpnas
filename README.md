@@ -62,7 +62,7 @@ To convert current user properties into Puppet code use
 
 ## openvpnas_user
 
-This resource allows to perform user management in Access Serve:
+This resource allows to perform user management in Access Server:
 
     openvpnas_user { 'test':
       ensure => present
