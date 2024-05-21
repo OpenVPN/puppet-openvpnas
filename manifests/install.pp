@@ -3,7 +3,6 @@
 # Install OpenVPN Access Server from the official repositories
 #
 class openvpnas::install {
-
   case $facts['os']['family'] {
     'Debian': {
       ::apt::source { 'as-repository':
@@ -17,7 +16,7 @@ class openvpnas::install {
         },
         include  => {
           'deb' => true,
-        }
+        },
       }
 
       package { 'openvpn-as':
@@ -26,7 +25,7 @@ class openvpnas::install {
       }
     }
     'RedHat': {
-      package { 'openvpn-as-yum':
+      package { 'openvpn-as-yum':
         ensure => $openvpnas::package_ensure,
         source => "https://as-repository.openvpn.net/as-repo-centos${facts['os']['release']['major']}.rpm",
       }
@@ -35,6 +34,9 @@ class openvpnas::install {
         ensure  => $openvpnas::package_ensure,
         require => Package['openvpn-as-yum'],
       }
+    }
+    default: {
+      fail('ERROR: unknown OS distro!')
     }
   }
 }

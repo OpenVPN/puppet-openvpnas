@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "jpogran.puppet-vscode",
-    "rebornix.Ruby"
+    "puppet.puppet-vscode",
+    "Shopify.ruby-lsp"
   ]
 }
